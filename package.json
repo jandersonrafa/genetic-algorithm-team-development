@@ -1,24 +1,36 @@
 {
-  "name": "starter-kit",
-  "version": "1.1.0",
+  "name": "genetic-algorithm-team-development",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "start": "python app.py"
+    "start-dev": "webpack-dev-server --open --mode development",
+    "start": "python app.py",
+    "build": "webpack --mode production"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jandersonrafa/genetic-algorithm-team-development.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "babel-core": "^6.4.5",
-    "babel-loader": "^6.2.1",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "webpack": "^1.12.12"
+  "bugs": {
+    "url": "https://github.com/jandersonrafa/genetic-algorithm-team-development/issues"
   },
-  "dependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+  "homepage": "https://github.com/jandersonrafa/genetic-algorithm-team-development#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "webpack": "^4.24.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   }
 }
