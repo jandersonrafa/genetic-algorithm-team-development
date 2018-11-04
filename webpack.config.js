@@ -28,8 +28,8 @@ module.exports = {
     })
   ],
   output: {
-      path: path.resolve(__dirname, './dist'),
-      filename: 'static/[name].js',
+    path: __dirname,
+    filename: "static/bundle.js"
   },
 
 };
