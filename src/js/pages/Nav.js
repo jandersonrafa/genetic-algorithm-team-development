@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   Route,
   NavLink,
-  BrowserRouter
+  HashRouter
 } from "react-router-dom";
 import Home from "./Home";
 import Blog from "./Blog";
@@ -12,7 +12,7 @@ import Contact from "./Contact";
 class Nav extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
       <div>
         <h1>IA2: Algoritmo Genético seleção equipe desenvolvimento</h1>
         <ul className="header">
@@ -24,10 +24,10 @@ class Nav extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/blog" component={Blog} />
             <Route path="/contact" component={Contact} />
-            <Route path="*" component={Home} />
+            <Route component={Home} />
         </div>
       </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
