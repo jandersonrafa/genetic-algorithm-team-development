@@ -23,8 +23,7 @@ class Nav extends Component {
         <div className="content">
             <Route exact path="/" component={Home} />
             <Route path="/blog" component={Blog} />
-            <Route path="/contact" component={Contact} />
-            <Route component={Home} />
+            <Route path="/contact" component={Contact} />            
         </div>
       </div>
       </HashRouter>
