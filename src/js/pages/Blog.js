@@ -4,7 +4,8 @@ class Blog extends Component {
   render() {
     return (
       <div>
-        <h2>A Blog Post</h2>
+        <h2>A Blog Post (DEPLOY AUTMOMAGICO FUNCIONOU</h2>
+        
         <p>
         Lorem ipsum dolor sit amet, duo vidit ullamcorper eu, mollis utroque vis ne, 
         fugit nominavi scripserit ex vim. Assum quaerendum delicatissimi vix id, nobis iisque vim ad, 
