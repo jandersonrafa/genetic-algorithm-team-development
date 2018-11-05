@@ -13,8 +13,6 @@ develop-eggs/
 downloads/
 eggs/
 .eggs/
-dist/
-static/
 lib/
 lib64/
 parts/
@@ -106,3 +104,6 @@ venv.bak/
 
 # npm
 node_modules/
+dist/
+static/
+index.html
