@@ -14,7 +14,7 @@ class Nav extends Component {
     return (
       <BrowserRouter>
       <div>
-        <h1>React Router Simple Starter</h1>
+        <h1>Algoritmo Genético seleção equipe desenvolvimento</h1>
         <ul className="header">
           <li><NavLink exact to="/">Home</NavLink> </li>
           <li><NavLink to="/blog">Blog</NavLink></li>
