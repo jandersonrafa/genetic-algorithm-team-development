@@ -4,6 +4,14 @@ const path = require('path');
 module.exports = {
   module: {
     rules: [
+      {    
+        test: /\.css$/,
+        use: 'css-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -29,7 +37,7 @@ module.exports = {
   ],
   output: {
     path: __dirname,
-    filename: "static/bundle.js"
+    filename: "static/[chunkhash].bundle.js"
   },
 
 };
