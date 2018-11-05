@@ -24,6 +24,7 @@ class Nav extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/blog" component={Blog} />
             <Route path="/contact" component={Contact} />
+            <Route path="*" component={Home} />
         </div>
       </div>
       </BrowserRouter>
