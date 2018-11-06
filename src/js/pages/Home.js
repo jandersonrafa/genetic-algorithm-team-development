@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: "Efetuando Requisição",
+    };
+  }
   render() {
+    const { message } = this.state;
     return (
       <div>
-        <h2>HELLO</h2>
+        <h2>Retorno Requisição: {message} </h2>        
         <p>
           Cras facilisis urna ornare ex volutpat, et
         convallis erat elementum. Ut aliquam, ipsum vitae
@@ -18,6 +25,22 @@ class Home extends Component {
         </p>
       </div>
     );
+  }
+  componentDidMount() {
+    fetch("/api/genetic")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            message: result.message
+          });
+        },
+        (error) => {
+          this.setState({
+            message: "Erro na requisição",
+          });
+        }
+      )
   }
 }
 
