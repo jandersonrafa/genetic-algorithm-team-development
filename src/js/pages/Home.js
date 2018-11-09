@@ -4,14 +4,22 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "Efetuando Requisição",
+      developers: [],
     };
   }
   render() {
-    const { message } = this.state;
+    const { developers } = this.state;
+
+    const listItems = developers.map((d) => <li key={d.name}>{d.salary}</li>);
+
     return (
+      <ul>{developers}</ul> ,
+
       <div>
-        <h2>Retorno Requisição: {message} </h2>        
+        <h2>Retorno Requisição:  </h2>
+        <div>
+          {listItems}
+        </div>
         <p>
           Cras facilisis urna ornare ex volutpat, et
         convallis erat elementum. Ut aliquam, ipsum vitae
@@ -21,7 +29,7 @@ class Home extends Component {
         dis parturient montes, nascetur ridiculus mus.
         </p>
         <p>
-         Duis a turpis sed lacus dapibus elementum sed eu lectus.
+          Duis a turpis sed lacus dapibus elementum sed eu lectus.
         </p>
       </div>
     );
@@ -32,12 +40,12 @@ class Home extends Component {
       .then(
         (result) => {
           this.setState({
-            message: result.message
+            developers: JSON.parse(result)
           });
         },
         (error) => {
           this.setState({
-            message: "Erro na requisição",
+            developers: [],
           });
         }
       )

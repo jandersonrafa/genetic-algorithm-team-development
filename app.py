@@ -1,6 +1,6 @@
 from flask import Blueprint, Flask, render_template
 from flask_restful import Api
-from server.api.GeneticApi import GeneticApi
+from server.api.GeneticApi import GeneticApi    
 
 app = Flask(__name__, static_folder = "./static", template_folder = "./")
 api_bp = Blueprint('api', __name__)
