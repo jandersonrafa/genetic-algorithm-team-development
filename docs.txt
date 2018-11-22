@@ -1,0 +1,15 @@
+// Tamanho populacao
+populationSize
+
+// numero de gerações
+numberGenerations
+
+// taxa de mutacao
+mutationRate
+
+// taxa de cruzamento 
+crossoverRate
+
+
+// valor mensal projeto
+maxMonthlyProjectValue
