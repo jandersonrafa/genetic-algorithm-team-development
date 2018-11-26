@@ -24,24 +24,24 @@ class GeneticService:
       # Gera população inicial
       population = GeneticService.generatePopulation(developers, parameter)
 
-      numberGenerations = 2
+      numberGenerations = parameter.numberGenerations
       # Funcao recursiva de novas gerações
       finalGeneration = GeneticService.nextGeneration(population, parameter, 0 , numberGenerations)
 
-      return sorted(finalGeneration, key = lambda y: (-y.totalKnowledge, y.totalSalary))
+      bestIndividuo = sorted(finalGeneration, key = lambda y: (-y.totalKnowledge, y.totalSalary))[0]
+      bestIndividuo.combination = list(filter(lambda x: x.isPresent, bestIndividuo.combination))
+      return bestIndividuo
 
     def nextGeneration(population, parameter, count, numberGenerations):
       count = count +1
       if (count >= numberGenerations):
         return population
       
-      # numero de elementos que não serão alterados para proximo geração
-      numberElementsElitism = len(population) * (parameter.elitismRate / 100)
       # numero de elementos que serão substituido na populacao
-      numberElementsReplacement = int((len(population) * (parameter.crossoverRate / 100)) - numberElementsElitism)
+      numberElementsReplacement = int(len(population) * (parameter.crossoverRate / 100))
       # ordena por fitness populacao
       populationSorted = sorted(population, key = lambda y: (-y.totalKnowledge, y.totalSalary))
-      newPopulation = copy.deepcopy(populationSorted)
+      newPopulation = populationSorted
 
       # obtem lista de filhos apartir de cruzamento
       childrensByCrossover = GeneticService.handleCrossover(populationSorted, numberElementsReplacement)
