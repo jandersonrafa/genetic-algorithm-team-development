@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import BootstrapTable from 'react-bootstrap-table-next';
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +24,7 @@ class Home extends Component {
           value: 50000
         }
       },
-      developers: []
+      individuo: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,14 +37,15 @@ class Home extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          devs = JSON.parse(result)
+          const devs = JSON.parse(result)
+          console.log(devs)
           this.setState({
-            developers: devs
+            individuo: devs
           });
         },
         (error) => {
           this.setState({
-            developers: [],
+            individuo: [],
           });
         }
       )
@@ -68,12 +72,23 @@ class Home extends Component {
   }
 
   render() {
-    const { developers } = this.state;
-
-    const listItems = developers.map((d) => <li key={d.name}>{d.salary}</li>);
+    const { individuo } = this.state;
+    const developers = individuo.combination ? individuo.combination.map((d) => d.developer):[];
+    console.log(individuo)
+    const columns = [{
+      dataField: 'name',
+      text: 'Nome'
+    }, {
+      dataField: 'salary',
+      text: 'Salário'
+    },
+    {
+      dataField: 'knowledge',
+      text: 'Conhecimento'
+    }];
 
     return (
-      <ul>{developers}</ul> ,
+      <ul>{individuo}</ul> ,
 
       <div>
         <h2>Retorno Requisição:  </h2>
@@ -101,20 +116,11 @@ class Home extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        <div>
-          {listItems}
-        </div>
-        <p>
-          Cras facilisis urna ornare ex volutpat, et
-        convallis erat elementum. Ut aliquam, ipsum vitae
-        gravida suscipit, metus dui bibendum est, eget rhoncus nibh
-        metus nec massa. Maecenas hendrerit laoreet augue
-        nec molestie. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus.
-        </p>
-        <p>
-          Duis a turpis sed lacus dapibus elementum sed eu lectus.
-        </p>
+        Total Grau de conhecimento: {individuo.totalKnowledge}
+        Total Salários: {individuo.totalSalary}
+        
+        <BootstrapTable keyField='id' data={ developers } columns={ columns } />
+
       </div>
     );
   }

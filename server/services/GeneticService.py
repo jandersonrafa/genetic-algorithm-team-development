@@ -28,11 +28,12 @@ class GeneticService:
       # Funcao recursiva de novas gerações
       finalGeneration = GeneticService.nextGeneration(population, parameter, 0 , numberGenerations)
 
-      bestIndividuo = sorted(finalGeneration, key = lambda y: (-y.totalKnowledge, y.totalSalary))[0]
+      bestIndividuo = sorted(finalGeneration, key = lambda y: (-(y.totalSalary < parameter.maxMonthlyProjectValue), -y.totalKnowledge, +y.totalSalary))[0]
       bestIndividuo.combination = list(filter(lambda x: x.isPresent, bestIndividuo.combination))
       return bestIndividuo
 
     def nextGeneration(population, parameter, count, numberGenerations):
+      teste = sorted(population, key = lambda y: (-(y.totalSalary < parameter.maxMonthlyProjectValue), -y.totalKnowledge, +y.totalSalary))[0]
       count = count +1
       if (count >= numberGenerations):
         return population
@@ -40,7 +41,7 @@ class GeneticService:
       # numero de elementos que serão substituido na populacao
       numberElementsReplacement = int(len(population) * (parameter.crossoverRate / 100))
       # ordena por fitness populacao
-      populationSorted = sorted(population, key = lambda y: (-y.totalKnowledge, y.totalSalary))
+      populationSorted = sorted(population, key = lambda y: (-(y.totalSalary < parameter.maxMonthlyProjectValue), -y.totalKnowledge, +y.totalSalary))
       newPopulation = populationSorted
 
       # obtem lista de filhos apartir de cruzamento
@@ -65,11 +66,21 @@ class GeneticService:
       for x in range(0, parameter.populationSize):
         chromo = Chromosome()
         for d in developers:
-          isPresent = numpy.random.choice([True, False])
           combinationElement = CombinationElement() 
           combinationElement.developer = d
-          combinationElement.isPresent = isPresent
+          combinationElement.isPresent = False
           chromo.combination.append(combinationElement)
+
+        totalSalary = float(0.0)
+        alcancou = True
+        while alcancou:
+          dev = random.choice(chromo.combination)
+          totalSalary += float(dev.developer.salary)
+          if totalSalary > parameter.maxMonthlyProjectValue:
+            alcancou = False
+            break;
+          dev.isPresent = True
+
         
         GeneticService.calculateTotals(chromo)
         population.append(chromo)
