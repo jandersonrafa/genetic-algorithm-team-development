@@ -33,7 +33,7 @@ class GeneticService:
       return bestIndividuo
 
     def nextGeneration(population, parameter, count, numberGenerations):
-      teste = sorted(population, key = lambda y: (-(y.totalSalary < parameter.maxMonthlyProjectValue), -y.totalKnowledge, +y.totalSalary))[0]
+      # teste = sorted(population, key = lambda y: (-(y.totalSalary < parameter.maxMonthlyProjectValue), -y.totalKnowledge, +y.totalSalary))[0]
       count = count +1
       if (count >= numberGenerations):
         return population
