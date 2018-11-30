@@ -73,19 +73,24 @@ class Home extends Component {
 
   render() {
     const { individuo } = this.state;
-    const developers = individuo.combination ? individuo.combination.map((d) => d.developer):[];
+    const developers = individuo.combination ? individuo.combination: [];
     console.log(individuo)
     const columns = [{
-      dataField: 'name',
-      text: 'Nome'
-    }, {
-      dataField: 'salary',
-      text: 'Salário'
-    },
-    {
-      dataField: 'knowledge',
-      text: 'Conhecimento'
-    }];
+        dataField: 'name',
+        text: 'Nome'
+      }, {
+        dataField: 'salary',
+        text: 'Salário'
+      },
+      {
+        dataField: 'knowledge',
+        text: 'Nivel'
+      },
+      {
+        dataField: 'knowledgeValue',
+        text: 'Grau conhecimento'
+      }
+    ];
 
     return (
       <ul>{individuo}</ul> ,

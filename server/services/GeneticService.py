@@ -11,7 +11,7 @@ with open(other_file_path) as fi:
   data = json.load(fi)
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-from entities.Developer import Developer
+# from entities.Developer import Developer
 from entities.Chromosome import Chromosome
 from entities.CombinationElement import CombinationElement
 
@@ -19,7 +19,7 @@ class GeneticService:
     def calculate(parameter=Parameter()):
       developers = [] 
       for dev in data:
-        developers.append(Developer(dev))
+        developers.append(CombinationElement(dev))
 
       # Gera população inicial
       population = GeneticService.generatePopulation(developers, parameter)
@@ -29,7 +29,12 @@ class GeneticService:
       finalGeneration = GeneticService.nextGeneration(population, parameter, 0 , numberGenerations)
 
       bestIndividuo = sorted(finalGeneration, key = lambda y: (-(y.totalSalary < parameter.maxMonthlyProjectValue), -y.totalKnowledge, +y.totalSalary))[0]
-      bestIndividuo.combination = list(filter(lambda x: x.isPresent, bestIndividuo.combination))
+      elementsPresent = []
+      for element in bestIndividuo.combination:
+        if element.isPresent:
+          elementsPresent.append(element)
+      # bestIndividuo.combination = list(filter(lambda x: x.isPresent, bestIndividuo.combination))
+      bestIndividuo.combination = elementsPresent
       return bestIndividuo
 
     def nextGeneration(population, parameter, count, numberGenerations):
@@ -42,7 +47,8 @@ class GeneticService:
       numberElementsReplacement = int(len(population) * (parameter.crossoverRate / 100))
       # ordena por fitness populacao
       populationSorted = sorted(population, key = lambda y: (-(y.totalSalary < parameter.maxMonthlyProjectValue), -y.totalKnowledge, +y.totalSalary))
-      newPopulation = populationSorted
+      # newPopulation = copy.deepcopy(populationSorted)
+      newPopulation = GeneticService.clonePopulation(populationSorted)
 
       # obtem lista de filhos apartir de cruzamento
       childrensByCrossover = GeneticService.handleCrossover(populationSorted, numberElementsReplacement)
@@ -66,41 +72,41 @@ class GeneticService:
       for x in range(0, parameter.populationSize):
         chromo = Chromosome()
         for d in developers:
-          combinationElement = CombinationElement() 
-          combinationElement.developer = d
-          combinationElement.isPresent = False
-          chromo.combination.append(combinationElement)
+          element = CombinationElement(None)
+          element.name = d.name
+          element.knowledge = d.knowledge
+          element.knowledgeValue = d.knowledgeValue
+          element.id = d.id
+          element.salary = d.salary
+          element.isPresent = d.isPresent
+          chromo.combination.append(element)
 
         totalSalary = float(0.0)
         alcancou = True
         while alcancou:
           dev = random.choice(chromo.combination)
-          totalSalary += float(dev.developer.salary)
+          if dev.isPresent:
+            continue
+          totalSalary += float(dev.salary)
           if totalSalary > parameter.maxMonthlyProjectValue:
             alcancou = False
             break;
           dev.isPresent = True
-
-        
         GeneticService.calculateTotals(chromo)
         population.append(chromo)
 
       return population
 
-    def handleKnowledge(knowledge):
-      upper = knowledge.upper()
-      if upper == 'TRAINEE':
-          return 1
-      elif upper == 'JUNIOR':
-          return 4
-      elif upper == 'PLENO':
-          return 8
-      elif upper == 'SENIOR':
-          return 12
-      elif upper == 'MASTER':
-          return 18
-      else:
-        ValueError("Valor invalido")
+      # if upper == 'TRAINEE':
+      #     return 1 a 3
+      # elif upper == 'JUNIOR':
+      #     return 4 a 7
+      # elif upper == 'PLENO':
+      #     return 8 a 11
+      # elif upper == 'SENIOR':
+      #     return 12 a 17
+      # elif upper == 'MASTER':
+      #     return 18 a 22
 
     def handleCrossover(populationSorted, numberElementsReplacement):
       bestParents = populationSorted[0:int(numberElementsReplacement)]
@@ -140,10 +146,28 @@ class GeneticService:
     def calculateTotals(chromo):
       for x in chromo.combination:
         if x.isPresent:
-          chromo.totalKnowledge += GeneticService.handleKnowledge(x.developer.knowledge)
-          chromo.totalSalary += float(x.developer.salary)
+          chromo.totalKnowledge += x.knowledgeValue
+          chromo.totalSalary += float(x.salary)
         
-
+    def clonePopulation(populationSorted): 
+      newPopulation = [] 
+      for sort in populationSorted:
+        chromo = Chromosome()
+        elementsPresent = []
+        for d in sort.combination:
+          element = CombinationElement(None)
+          element.name = d.name
+          element.knowledge = d.knowledge
+          element.knowledgeValue = d.knowledgeValue
+          element.id = d.id
+          element.salary = d.salary
+          element.isPresent = d.isPresent
+          elementsPresent.append(element)
+        chromo.combination = elementsPresent
+        chromo.totalSalary = sort.totalSalary
+        chromo.totalKnowledge = sort.totalKnowledge
+        newPopulation.append(chromo)
+      return newPopulation
         
 
 

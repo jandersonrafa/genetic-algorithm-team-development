@@ -40,13 +40,9 @@ class GeneticApi(Resource):
         bestIndividuo = GeneticService.calculate(parameter)
         combination = []
         for c in bestIndividuo.combination:
-            comb = c
-            comb.developer = c.developer.__dict__
-            comb.isPresent = 0
-            combination.append(comb.__dict__)
-        teste = bestIndividuo
-        teste.combination = combination
-        response = teste.__dict__
+            combination.append(c.__dict__)
+        bestIndividuo.combination = combination
+        response = bestIndividuo.__dict__
 
         return json.dumps(response)
         # return "asdsad"
