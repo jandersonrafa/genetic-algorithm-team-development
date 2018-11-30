@@ -16,6 +16,13 @@ from entities.Chromosome import Chromosome
 from entities.CombinationElement import CombinationElement
 
 class GeneticService:
+    def findAll():
+      developers = [] 
+      for dev in data:
+        developers.append(CombinationElement(dev))
+
+      return developers
+
     def calculate(parameter=Parameter()):
       developers = [] 
       for dev in data:

@@ -1,6 +1,7 @@
 from flask import Blueprint, Flask, render_template
 from flask_restful import Api
 from server.api.GeneticApi import GeneticApi    
+from server.api.DeveloperApi import DeveloperApi    
 
 app = Flask(__name__, static_folder = "./static", template_folder = "./")
 api_bp = Blueprint('api', __name__)
@@ -15,6 +16,7 @@ def hello_world():
 # prefix /api
 app.register_blueprint(api_bp, url_prefix='/api')
 api.add_resource(GeneticApi, '/genetic')
+api.add_resource(DeveloperApi, '/developer')
 
 if __name__ == "__main__":
     app.run(debug=True)
