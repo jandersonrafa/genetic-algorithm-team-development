@@ -18,7 +18,7 @@ class Nav extends Component {
           <li><NavLink exact to="/">Home</NavLink> </li>
           <li><NavLink to="/dev">Desenvolvedores</NavLink></li>
         </ul>
-        <div className="content">
+        <div className="content" class="content">
             <Route exact path="/" component={Home} />
             <Route path="/dev" component={Dev} />
         </div>
