@@ -94,9 +94,8 @@ class Home extends Component {
 
     return (
       <ul>{individuo}</ul> ,
-
-      <div>
-        <h2 class='retorno'>Retorno Requisição:  </h2>
+      <div class="conteudo">
+        <h2 class="retorno">Retorno Requisição:  </h2>
 
         <form onSubmit={this.handleSubmit} class="form">
           <label>

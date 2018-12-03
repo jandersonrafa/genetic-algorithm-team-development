@@ -13,7 +13,7 @@ class Nav extends Component {
     return (
       <HashRouter>
       <div>
-        <h1 class='titulo'>IA2: Algoritmo Genético seleção equipe desenvolvimento</h1>
+        <h1 class='titulo' style="position: fixed; color: white; text-align=center;">IA2: Algoritmo Genético seleção equipe desenvolvimento</h1>
         <ul className="header" class='header'>
           <li><NavLink exact to="/">Home</NavLink> </li>
           <li><NavLink to="/dev">Desenvolvedores</NavLink></li>
