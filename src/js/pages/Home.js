@@ -98,26 +98,32 @@ class Home extends Component {
       <div>
         <h2>Retorno Requisição:  </h2>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} class="form">
           <label>
-            Tamanho da população:
+            <br></br><br></br>
+            Tamanho da população:<br></br>
             <input name="populationSize" type="text" value={this.state.form.populationSize.value} onChange={this.handleChange} />
           </label>
           <label>
-            Número de gerações:
+            <br></br><br></br>
+            Número de gerações:<br></br>
             <input name="numberGenerations" type="text" value={this.state.form.numberGenerations.value} onChange={this.handleChange} />
           </label>
           <label>
-            Taxa de cruzamento(%):
+            <br></br><br></br>
+            Taxa de cruzamento(%):<br></br>
             <input name="crossoverRate" type="text" value={this.state.form.crossoverRate.value} onChange={this.handleChange} />
           </label>
           <label>
-            Taxa de mutação(%):
+            <br></br><br></br>
+            Taxa de mutação(%):<br></br>
             <input name="mutationRate" type="text" value={this.state.form.mutationRate.value} onChange={this.handleChange} />
           </label>
           <label>
-            Valor mensal máximo do projeto:
+            <br></br><br></br>
+            Valor mensal máximo do projeto:<br></br>
             <input name="maxMonthlyProjectValue" type="text" value={this.state.form.maxMonthlyProjectValue.value} onChange={this.handleChange} />
+            <br></br><br></br>
           </label>
           <input type="submit" value="Submit" />
         </form>
