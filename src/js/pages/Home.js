@@ -94,8 +94,8 @@ class Home extends Component {
 
     return (
       <ul>{individuo}</ul> ,
-      <div class="conteudo">
-        <h2 class="retorno">Retorno Requisição:  </h2>
+      <div>
+        <h2>Retorno Requisição:  </h2>
 
         <form onSubmit={this.handleSubmit} class="form">
           <label>
@@ -127,11 +127,15 @@ class Home extends Component {
           <input type="submit" value="Submit" />
         </form>
         <br></br><br></br>
-        <label class = "resultado">Total Grau de conhecimento: {individuo.totalKnowledge}
+        <label class = "resultado">Total Grau de conhecimento: {individuo.totalKnowledge}<br></br><br></br>
         Total Salários: {individuo.totalSalary}
         </label>
-        <BootstrapTable keyField='id' data={ developers } columns={ columns } />
+        <br></br><br></br><br></br>
 
+        <label class="final">
+        <BootstrapTable keyField='id' data={ developers } columns={ columns } />
+        </label>
+        
       </div>
     );
   }

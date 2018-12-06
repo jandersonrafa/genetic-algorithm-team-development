@@ -1,5 +1,5 @@
 body {
-    background-color: #B9DEDF;
+    background-color: rgb(208, 228, 255);
     padding: 20px;
     margin: 0;
   }
@@ -12,7 +12,7 @@ body {
     margin: 0;
   }
   ul.header {
-    background-color:#2B2F3F;
+    background-color:rgb(42, 56, 112);
     padding: 0;
     -webkit-box-shadow: 3px 7px 10px 0px rgba(45, 46, 67, 0.85);
     -moz-box-shadow:    3px 7px 10px 0px rgba(45, 46, 67, 0.85);
@@ -22,7 +22,7 @@ body {
     color: #FFF;
     font-weight: bold;
     text-decoration: none;
-    padding: 20px;
+    padding: 25px;
     display: inline-block;
   }
   .content {
@@ -33,16 +33,17 @@ body {
     box-shadow:         2px 4px 8px 0px rgba(45, 46, 67, 0.85);
   }
   h1 {
-    color: #29303D;
+    color: rgb(42, 56, 112);
+    text-align: center;
+    
   }
   .content h2 {
-    padding: 0;
-    margin: 0;
+    padding: 4;
+    margin: 1;
   }
   .content li {
     margin-bottom: 10px;
   }
-  
   .active {
-    background-color: #5EA1A6;
+    background-color: rgb(121, 142, 207);
   }
